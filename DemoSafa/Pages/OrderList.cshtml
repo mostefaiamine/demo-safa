@@ -1,0 +1,30 @@
+﻿@page
+@model DemoSafa.Pages.OrderListModel
+@{
+}
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ord in Model.Orders)
+                {
+                <tr>
+                    <td>@ord.Id</td>
+                    <td>@ord.Product</td>
+                    <td>@ord.Quantity</td>
+                    <td>@ord.Amount</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
