@@ -26,7 +26,7 @@ jobs:
       env: 
         ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
     - name: Docker tag
-      run:  docker tag mostefaiamine/safa-app:${{ env.BUILD_VER }} hisregistry/demoigf:latest   
+      run:  docker tag mostefaiamine/safa-app:${{ env.BUILD_VER }} mostefaiamine/safa-app:latest   
     - name: Docker push
       run:  |
         docker push mostefaiamine/safa-app:${{ env.BUILD_VER }}     
