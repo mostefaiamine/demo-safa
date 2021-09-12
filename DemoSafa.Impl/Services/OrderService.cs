@@ -26,8 +26,11 @@ namespace DemoSafa
         /// </summary>
         private readonly IProductService _productService;
 
-        public OrderService(IProductService productService)
+        private readonly ITVAService _tva;
+
+        public OrderService(IProductService productService, ITVAService tva)
         {
+            _tva = tva;
             _productService = productService;
         }
 
@@ -51,6 +54,7 @@ namespace DemoSafa
                 Status = OrderStatus.Pending,
                 UnitPrice = price
             };
+            order.Amount += (order.Amount * _tva.GetTaux()) / 100;
             _orders.Add(order);
             return order;
 
