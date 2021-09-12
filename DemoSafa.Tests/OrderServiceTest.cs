@@ -13,8 +13,9 @@ namespace DemoSafa.Tests
         [Fact(DisplayName = "Get All Order")]
         public async Task GetAllTest()
         {
+            ITVAService tva = new TVAService();
             IProductService prdS = new ProductService();
-            IOrderService orders = new OrderService(prdS);
+            IOrderService orders = new OrderService(prdS, tva);
             var list = await orders.GetAllOrders();
             Assert.NotNull(list);
         }
@@ -23,13 +24,14 @@ namespace DemoSafa.Tests
         public async Task GetACreateOrderTestllTest()
         {
             IProductService prdS = new ProductService();
-            IOrderService orders = new OrderService(prdS);
+            ITVAService tva = new TVAService();
+            IOrderService orders = new OrderService(prdS, tva);
             var list = await orders.GetAllOrders();
             var count = list.Count;
             var order = await orders.CreateOrder(FakeData.ProductCodes.SOAP, 3);
             Assert.NotNull(list);
             Assert.NotNull(order);
-            Assert.Equal(1050, order.Amount);
+            Assert.Equal(1249.5m, order.Amount);
             Assert.Equal(DateTime.Now.Date, order.Date.Date);
             Assert.Equal(1, order.Id);
             Assert.Equal(FakeData.ProductCodes.SOAP, order.Product);

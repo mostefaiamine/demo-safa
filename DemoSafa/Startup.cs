@@ -26,6 +26,7 @@ namespace DemoSafa
             services.AddRazorPages();
             services.AddSingleton<IProductService, ProductService>();
             services.AddSingleton<IOrderService, OrderService>();
+            services.AddSingleton<ITVAService, TVAService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
